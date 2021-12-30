@@ -4,14 +4,107 @@
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>中文版p站</title>
+    <title>yyjblog</title>
 </head>
 <body background="./哦呜_files/src=http___pic129.nipic.com_file_20170511_24710652_114505999000_2.jpg&amp;refer=http___pic129.nipic.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg">
-    <center><ins><h1>点击下方图片立即前往</h1></ins></center>
-    <center><em><h3>温馨提示，中文版p站无需微屁恩，切勿外传哦</h3></em></center>
-    <center>
-    <a href="https://www.bilibili.com/video/BV1uT4y1P7CX/?spm_id_from=333.788.recommend_more_video.1" target="_blank"> <img src="./哦呜_files/src=http___b-ssl.duitang.com_uploads_item_201605_16_20160516200622_dHVkS.thumb.224_0.png&amp;refer=http___b-ssl.duitang.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg" title="点击前往pixiv中文版" width="800" height="1000"> </a>
-    </center>
+   <pre> #include <iostream>
+        using namespace std;
+        
+        class Distance
+        {
+        private:
+            int feet;             // 0 到无穷
+            int inches;           // 0 到 12
+        public:
+            // 所需的构造函数
+            Distance() {
+                feet = 0;
+                inches = 0;
+            }
+            Distance(int f, int i) {
+                feet = f;
+                inches = i;
+            }
+            // 显示距离的方法
+            void displayDistance()
+            {
+                cout << "F: " << feet << " I:" << inches << endl;
+            }
+            // 重载负运算符--前缀
+            Distance operator-- ()
+            {
+                --feet;
+                --inches;
+                return Distance(feet, inches);
+            }
+            //重载负运算符--后缀
+            Distance operator--(int) {
+        
+                Distance temp(feet, inches);
+                --feet;
+                --inches;
+          //也可以直接这样换  --*this;
+                return temp;
+            }
+        };
+        int main()
+        {
+            Distance D1(11, 10), D2(-5, 11);
+        
+            (--D1).displayDistance();                     
+            D1.displayDistance();    
+        
+            D2--.displayDistance();                     
+            D2.displayDistance();    
+        
+            return 0;
+        }
+        代码是这样的，应该c++里一元运算符默认都是起在变量前面的，并且大多没有参数，因为单个数据参与运算大多就是类里的那个参与运算。
+        而像++，--这样的起在标识符后面的往往会在后莫按摩加一个变量？可能是为了区分，这个变量本身并不参与函数内的任何运算，而运算先后顺序就由函数自己来定了。
+        这两个可能就是区分用的————————
+        运行结果如下：
+         
+        关于time函数：
+        头文件是#include<ctime>，c是<time.h>
+        Time_t 是一个大类,
+        其中包含time（）函数，全称是time_t time(time_t *seconds)
+        Second是一个指针 用于指向对应成员函数，在正常情况下可以视作为空，也可以放入对象地址
+        如
+        time_t a;
+        
+            a = time(NULL);// a = time(&a);
+            cout<<"自 1970-01-01 起的小时数 = "<< a / 3600;
+        表示的是从1970.1.1到现在的小时数。
+        结果：
+         
+         char *ctime(const time_t *timer)表示返回当地时间字符串，也是time_t里的函数；
+        •	timer -- 这是指向 time_t 对象的指针，该对象包含了一个日历时间。
+        可以写成
+            time_t curtime;
+        
+            time(&curtime);
+        
+            cout<<"当前时间为"<<ctime_s(&curtime);
+        要在time函数也就是time（* p）里面定义一个time（&a），这个应该就是把当前时间获取的。
+        Visual Studio 2013 运行 ctime 报错 C4996 显示 ctime 为不安全函数，Visual Studio 2015 在错误 C4996 中推荐使用 ctime_s 代替 ctime。但是有另一种方法，在所有的 #include 前面加上 #pragma warning(disable:4996) 就可以了：
+        另外，还可以这样做
+        #include <iostream>
+        using namespace std;
+        #include <time.h>
+        int main()
+        {
+            time_t curtime;
+            char str[26];
+            time(&curtime);
+            ctime_s(str,26,&curtime);
+            cout << str;
+            return  0;
+        }
+        我的理解是，创建一个str地址，存放curtime地址，再将其输出，ctime_s要求后面加入三个参数
+         ；
+        </pre>
+        
+        
 
 
 </body></html>
